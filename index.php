@@ -1,4 +1,27 @@
+<?php 
+    
+    if (isset($_POST['submit'])) {
+$from = $_POST['email'];
+$to = 'php@shutterstorm.net';
+$subject = 'Email signup';
+$body = 'Please sign me up for news and other info.';
+
+    if (!$_POST['email']) {
+    $emailError= '<div class="text-danger"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>Please enter a valid email address.</div>'; }
+}
+
+if (!emailError){
+    if (mail ($to, $subject, $body, $from)) {
+        $result = 'Message sent successfully. Thank you!';
+    } else {
+        $result = '<div class="text-danger">sorry, please try again.</div>';
+    }
+}
+
+?>
+
 <!DOCTYPE html>
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -72,6 +95,8 @@
               <input type="email" class="form-control form-control-sm" name="email" placeholder="enter your email">
               <button type="submit" class="btn btn-signup btn-sm" name="submit" value="send">find out more</button>
               </form>
+              <?php echo $emailError; ?>
+              <?php echo $result; ?>
               </div>
           </div>
           </div>
